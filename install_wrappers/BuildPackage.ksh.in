@@ -9,5 +9,5 @@ source /opt/modules/default/init/ksh
 
 cd @PROJECT_BINARY_DIR@/3rdparty/spack
 aprun -n 1 -N 1 -e HOME=@PROJECT_BINARY_DIR@/3rdparty/spack python ./bin/spack mirror add local_filesystem file://@PROJECT_BINARY_DIR@/3rdparty/spack/localmirror
-aprun -n 1 -N 1 -e HOME=@PROJECT_BINARY_DIR@/3rdparty/spack python ./bin/spack install @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3 cflags="-target-cpu=mc8" cppflags="-target-cpu=mc8" cxxflags="-target-cpu=mc8" fflags="-target-cpu=mc8"
+aprun -n 1 -N 1 -d 16 -e HOME=@PROJECT_BINARY_DIR@/3rdparty/spack python ./bin/spack install @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3 cflags="-target-cpu=mc8" cppflags="-target-cpu=mc8" cxxflags="-target-cpu=mc8" fflags="-target-cpu=mc8"
 @PROJECT_BINARY_DIR@/3rdparty/spack find > results.txt

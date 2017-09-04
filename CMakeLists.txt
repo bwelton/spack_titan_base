@@ -35,7 +35,7 @@ configure_file (
 ExternalProject_Add(
 	spack 
 	URL "http://pages.cs.wisc.edu/~welton/spack_titan.tar.gz"
-	URL_MD5 "9343f9f39b6c2de4e631a877ba6a0c97"
+	URL_MD5 "c4fe0a279f4d6f74aeba99e89567b460"
 	SOURCE_DIR "${PROJECT_BINARY_DIR}/3rdparty/spack"
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND bash ${PROJECT_BINARY_DIR}/wrappers/BuildPackage.sh
