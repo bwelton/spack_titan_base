@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export MODULEPATH=$MODULEPATH:@PROJECT_BINARY_DIR@/3rdparty/spack/share/spack/modules/cray-CNL-interlagos
