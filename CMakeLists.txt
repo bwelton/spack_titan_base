@@ -3,6 +3,9 @@ SET(CMAKE_CXX_STANDARD 11)
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 project(spack_titan_base)
 
+set(BUILD_PACKAGE "gromacs")
+set(PACKAGE_PARAMETERS "+cuda +shared")
+
 if (NOT DEFINED BUILD_PACKAGE)
 	message(ERROR "Please specify package to build with Spack -DBUILD_PACKAGE")
 endif (NOT DEFINED BUILD_PACKAGE)
