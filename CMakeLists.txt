@@ -4,7 +4,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 project(spack_titan_base)
 
 set(BUILD_PACKAGE "cntk")
-set(PACKAGE_PARAMETERS "+cuda +debug")
+set(PACKAGE_PARAMETERS "+cuda +debug -asgd")
 
 if (NOT DEFINED BUILD_PACKAGE)
 	message(ERROR "Please specify package to build with Spack -DBUILD_PACKAGE")
