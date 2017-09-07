@@ -44,11 +44,12 @@ configure_file (
 
 ExternalProject_Add(
 	spack 
-	URL "http://pages.cs.wisc.edu/~welton/spack_titan.tar.gz"
-	URL_MD5 "c4fe0a279f4d6f74aeba99e89567b460"
+        GIT_REPOSITORY "https://github.com/bwelton/spack.git"
+	GIT_TAG "develop"
 	SOURCE_DIR "${PROJECT_BINARY_DIR}/3rdparty/spack"
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND bash ${PROJECT_BINARY_DIR}/wrappers/BuildPackage.sh
-	UPDATE_COMMAND ""
+        INSTALL_COMMAND ""
+	UPDATE_COMMAND git pull origin develop
 )
 
