@@ -2,6 +2,6 @@ cd @PROJECT_BINARY_DIR@/3rdparty/spack
 rm -f @PROJECT_BINARY_DIR@/3rdparty/spack/results.txt
 lfs setstripe -c 1 @PROJECT_BINARY_DIR@/3rdparty/spack 
 echo "======== Downloading @BUILD_PACKAGE@ ========"
-@PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack --insecure mirror create -d @PROJECT_BINARY_DIR@/3rdparty/spack/localmirror -D @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3
+#@PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack --insecure mirror create -d @PROJECT_BINARY_DIR@/3rdparty/spack/localmirror -D @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3
 echo "======== Launching Build Job ========"
 @PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack install @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3

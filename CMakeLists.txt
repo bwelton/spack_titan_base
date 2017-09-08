@@ -4,7 +4,7 @@ include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 project(spack_titan_base)
 
 set(BUILD_PACKAGE "caffe")
-set(PACKAGE_PARAMETERS "+cuda +python")
+set(PACKAGE_PARAMETERS "+cuda +python -opencv")
 
 if (NOT DEFINED BUILD_PACKAGE)
 	message(ERROR "Please specify package to build with Spack -DBUILD_PACKAGE")
