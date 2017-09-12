@@ -6,7 +6,7 @@
 #PBS -e @LOG_DIR@/$PBS_JOBID.err
 #PBS -o @LOG_DIR@/$PBS_JOBID.out
 #PBS -A @PROJ_ID@
-
+source /opt/modules/default/init/ksh
 ## Set module environment to find spack modules
 source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
 

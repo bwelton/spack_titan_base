@@ -53,4 +53,4 @@ ExternalProject_Add(
         INSTALL_COMMAND ""
 )
 
-include(${PROJECT_SOURCE_DIR}/Caffe.cmake)
+include(${CMAKE_SOURCE_DIR}/Caffe.cmake)
