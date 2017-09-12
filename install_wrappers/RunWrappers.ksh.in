@@ -1,0 +1,20 @@
+#!/bin/ksh
+#PBS -N @BUILD_PACKAGE@
+#PBS -j oe
+#PBS -l nodes=@NODES@
+#PBS -l walltime=@TIME@
+#PBS -e @LOG_DIR@/$PBS_JOBID.err
+#PBS -o @LOG_DIR@/$PBS_JOBID.out
+#PBS -A @PROJ_ID@
+
+## Set module environment to find spack modules
+source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
+
+## load caffe
+module load caffe-1.0-gcc-4.9.3-goznmnn
+module load python-2.7.13-gcc-4.9.3-25lnhkg
+
+## Load boost from external location (may not be necessary on machines that are not titan...)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BOOST_LIB
+
+## Launch 

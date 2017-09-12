@@ -1,0 +1,27 @@
+#!/bin/ksh
+#PBS -N @BUILD_PACKAGE@
+#PBS -j oe
+#PBS -l nodes=@NODES@
+#PBS -l walltime=@TIME@
+#PBS -e @LOG_DIR@/$PBS_JOBID.err
+#PBS -o @LOG_DIR@/$PBS_JOBID.out
+#PBS -A @PROJ_ID@
+
+## Set module environment to find spack modules
+source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
+
+## load caffe
+module load caffe-1.0-gcc-4.9.3-goznmnn
+module load python-2.7.13-gcc-4.9.3-25lnhkg
+
+## Load boost from external location (may not be necessary on machines that are not titan...)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BOOST_LIB
+
+## Convert Minst Data
+cd @PROJECT_BINARY_DIR@/mnist_data
+rm -rf @PROJECT_BINARY_DIR@/mnist_data/mnist_train_lmdb
+rm -rf @PROJECT_BINARY_DIR@/mnist_data/mnist_test_lmdb
+
+echo "Creating mnist data"
+convert_mnist_data train-images-idx3-ubyte train-labels-idx1-ubyte mnist_train_lmdb --backend=lmdb
+convert_mnist_data t10k-images-idx3-ubyte t10k-labels-idx1-ubyte mnist_test_lmdb --backend=lmdb

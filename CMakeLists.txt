@@ -50,5 +50,7 @@ ExternalProject_Add(
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND bash ${PROJECT_BINARY_DIR}/wrappers/BuildPackage.sh
 	UPDATE_COMMAND git pull origin develop
+        INSTALL_COMMAND ""
 )
 
+include(${PROJECT_SOURCE_DIR}/Caffe.cmake)
