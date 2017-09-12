@@ -49,6 +49,6 @@ ExternalProject_Add(
 	SOURCE_DIR "${PROJECT_BINARY_DIR}/3rdparty/spack"
 	CONFIGURE_COMMAND ""
 	BUILD_COMMAND bash ${PROJECT_BINARY_DIR}/wrappers/BuildPackage.sh
-	UPDATE_COMMAND ""
+	INSTALL_COMMAND ""
 )
 
