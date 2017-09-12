@@ -52,3 +52,4 @@ ExternalProject_Add(
 	INSTALL_COMMAND ""
 )
 
+include(${CMAKE_SOURCE_DIR}/Cloverleaf.cmake)
