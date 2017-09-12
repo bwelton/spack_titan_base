@@ -1,0 +1,20 @@
+#!/bin/ksh
+#PBS -N @BUILD_PACKAGE@
+#PBS -j oe
+#PBS -l nodes=@NODES@
+#PBS -l walltime=@TIME@
+#PBS -e @LOG_DIR@/$PBS_JOBID.err
+#PBS -o @LOG_DIR@/$PBS_JOBID.out
+#PBS -A @PROJ_ID@
+source /opt/modules/default/init/ksh
+## Set module environment to find spack modules
+source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
+
+## load caffe
+module load flann-1.9.1-gcc-4.9.3-bb7loxh
+module load cuda-7.5.18-gcc-4.9.3-zkd43xo
+
+## Load boost from external location (may not be necessary on machines that are not titan...)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BOOST_LIB
+
+## Launch Caffe
