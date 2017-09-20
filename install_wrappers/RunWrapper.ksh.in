@@ -13,6 +13,12 @@ source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
 ## load caffe
 module load cloverleaf-1.1-gcc-4.9.3-cvmfgsq
 module load cuda-7.5.18-gcc-4.9.3-zkd43xo
+module load python-2.7.13-gcc-4.9.3-25lnhkg
+module load cudadedup-master-gcc-4.9.3-tv6e6rn
+module load dyninst-9.3.2-gcc-4.9.3-uit3bhi
+export LD_LIBRARY_PATH=@PROJECT_BINARY_DIR@/libcuda_detect:$LD_LIBRARY_PATH
+export DYNINSTAPI_RT_LIB=/lustre/atlas2/csc103/scratch/welton/local/dedup_test/cloverleaf/build/3rdparty/spack/opt/spack/cray-CNL-interlagos/gcc-4.9.3/dyninst-9.3.2-uit3bhiupk26ssoev4a6dvs7dlq7ghmk/lib/libdyninstAPI_RT.so
+
 
 ## Load boost from external location (may not be necessary on machines that are not titan...)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BOOST_LIB

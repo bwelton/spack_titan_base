@@ -5,3 +5,19 @@ echo "======== Downloading @BUILD_PACKAGE@ ========"
 @PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack --insecure mirror create -d @PROJECT_BINARY_DIR@/3rdparty/spack/localmirror -D @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3
 echo "======== Launching Build Job ========"
 @PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack install @BUILD_PACKAGE@ @PACKAGE_PARAMETERS@ %gcc@4.9.3
+
+echo "======== Getting cudadedup ========"
+yes | @PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack -d uninstall --all cudadedup
+@PROJECT_BINARY_DIR@/3rdparty/spack/bin/spack -d install --restage cudadedup +timeline %gcc@4.9.3
+source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
+module load cudadedup-master-gcc-4.9.3-tv6e6rn
+module load dyninst-9.3.2-gcc-4.9.3-uit3bhi
+module load python-2.7.13-gcc-4.9.3-25lnhkg
+CUDADEDUP=@PROJECT_BINARY_DIR@/3rdparty/spack/opt/spack/cray-CNL-interlagos/gcc-4.9.3/cudadedup-master-tv6e6rnjta5kijpvazrxiwvd6coyitwj
+mkdir @PROJECT_BINARY_DIR@/libcuda_detect
+rm -f @PROJECT_BINARY_DIR@/libcuda_detect/libcuda.so
+rm -f @PROJECT_BINARY_DIR@/libcuda_detect/libcuda.so.1
+bash $CUDADEDUP/bin/inst_app.sh /opt/cray/nvidia/default/lib64/libcuda.so.1 $CUDADEDUP/defs/DetectDuplicates.def @PROJECT_BINARY_DIR@/libcuda_detect/libcuda.so.1
+cp @PROJECT_BINARY_DIR@/libcuda_detect/libcuda.so.1 @PROJECT_BINARY_DIR@/libcuda_detect/libcuda.so
+
+# cudadedup-master-4c22wbgwuqpqdugsnkxnvuf64ezwjji4
