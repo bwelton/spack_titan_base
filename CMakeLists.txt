@@ -5,7 +5,7 @@ project(spack_titan_base)
 
 set(BUILD_PACKAGE "caffe")
 set(PACKAGE_PARAMETERS "+cuda +python -opencv")
-
+set(SPACK_MOD_DIR "${PROJECT_BINARY_DIR}/3rdparty/spack/share/spack/modules/cray-CNL-interlagos")
 if (NOT DEFINED BUILD_PACKAGE)
 	message(ERROR "Please specify package to build with Spack -DBUILD_PACKAGE")
 endif (NOT DEFINED BUILD_PACKAGE)
@@ -38,6 +38,11 @@ configure_file (
 configure_file (
     "${PROJECT_SOURCE_DIR}/install_wrappers/SetModuleEnv.sh.in"
 	"${PROJECT_BINARY_DIR}/wrappers/SetModuleEnv.sh"
+	@ONLY
+)
+configure_file (
+    "${PROJECT_SOURCE_DIR}/install_wrappers/LoadSpackModules.py.in"
+	"${PROJECT_BINARY_DIR}/wrappers/LoadSpackModules.py"
 	@ONLY
 )
 

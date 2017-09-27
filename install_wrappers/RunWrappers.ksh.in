@@ -12,12 +12,17 @@ source @PROJECT_BINARY_DIR@/wrappers/SetModuleEnv.sh
 
 ## load caffe
 module load caffe-1.0-gcc-4.9.3-kzfrcfk
-module load python-2.7.13-gcc-4.9.3-25lnhkg
-module load cuda-7.5.18-gcc-4.9.3-zkd43xo
+rm -f ./load_modules.sh
+python @PROJECT_BINARY_DIR@/wrappers/LoadSpackModules.py
+source ./load_modules.sh
+rm -f ./load_modules.sh
 
+export LD_LIBRARY_PATH=@PROJECT_BINARY_DIR@/libcuda_detect:$LD_LIBRARY_PATH
+export DYNINSTAPI_RT_LIB=@PROJECT_BINARY_DIR@/3rdparty/spack/opt/spack/cray-CNL-interlagos/gcc-4.9.3/dyninst-9.3.2-uit3bhiupk26ssoev4a6dvs7dlq7ghmk/lib/libdyninstAPI_RT.so
 ## Load boost from external location (may not be necessary on machines that are not titan...)
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BOOST_LIB
 
 ## Launch Caffe
 cd @DATA_DIRECTORY@
+
+#aprun -b -n 1 -N 1 nvprof caffe train --solver=@DATA_DIRECTORY@/lenet_solver.prototxt
 aprun -n 1 -N 1 caffe train --solver=@DATA_DIRECTORY@/lenet_solver.prototxt
